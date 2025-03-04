@@ -41,6 +41,7 @@ scale = Vector2(2.3477, 2.3477)
 texture = ExtResource("4_xo5rq")
 
 [node name="Camera2D" type="Camera2D" parent="World"]
+position = Vector2(15, 15)
 
 [node name="Water" type="Node2D" parent="World"]
 z_index = -5
