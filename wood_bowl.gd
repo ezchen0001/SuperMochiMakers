@@ -1,8 +1,12 @@
 extends Node2D
 
+signal first_hit
+signal win
+
 @onready var _poly = $MochiPoly
 @onready var _label = $Label
 var original_pos = []
+var started = false
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	key_pos_map = generate_key_pos_map()
@@ -27,6 +31,11 @@ func pound(x:float):
 	pound_tween.tween_property($Impact, "modulate", Color.TRANSPARENT, 0.3)
 	$Whack.play()
 	print(abs(get_parent().get_node("Hand/Center").position.x-x))
+	if not started:
+		started = true
+		first_hit.emit()
+	
+	# Hand hitting logic (for time penalty)
 	if abs(get_parent().get_node("Hand/Center").position.x-x) < POUND_RADIUS:
 		get_parent().get_node("Hand").color = Color.RED
 		if hurt_tween:
@@ -49,9 +58,11 @@ func pound(x:float):
 	if not _label.visible and is_goal_reached():
 		$Success.play()
 		_label.visible = true
+		win.emit()
 		await get_tree().create_timer(5).timeout
 		_randomize()
 		_label.visible = false
+		
 		
 	pass
 var win_seq = true

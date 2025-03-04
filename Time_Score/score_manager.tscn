@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=3 uid="uid://cqi7neen0jyjt"]
+
+[ext_resource type="Script" path="res://Time_Score/score_manager.gd" id="1_qatvg"]
+
+[node name="Score Manager" type="Node"]
+script = ExtResource("1_qatvg")
+
+[node name="1 Sec Timer" type="Timer" parent="."]
+wait_time = 0.5
+
+[node name="Time Label" type="Label" parent="."]
+z_index = 4
+offset_left = -956.0
+offset_top = -665.0
+offset_right = -80.0
+offset_bottom = -63.0
+theme_override_font_sizes/font_size = 441
+text = "0:00"
+
+[connection signal="timeout" from="1 Sec Timer" to="." method="_on__sec_timer_timeout"]

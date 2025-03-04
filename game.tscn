@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://dt000e1spiix3"]
+[gd_scene load_steps=18 format=3 uid="uid://dt000e1spiix3"]
 
 [ext_resource type="Script" path="res://world_hand.gd" id="1_oap4b"]
 [ext_resource type="Texture2D" uid="uid://ftvfremxkw4l" path="res://hand_joint.png" id="2_a7ii1"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://0lsume0crb5w" path="res://mochi.png" id="7_vstma"]
 [ext_resource type="AudioStream" uid="uid://xwg8qs4ay3ea" path="res://success.wav" id="8_an20p"]
 [ext_resource type="AudioStream" uid="uid://cxh4kmlh3o8x" path="res://splash.wav" id="9_n43dg"]
+[ext_resource type="PackedScene" uid="uid://cqi7neen0jyjt" path="res://Time_Score/score_manager.tscn" id="12_df6i4"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_re0uv"]
 radius = 128.52
@@ -164,3 +165,8 @@ theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 5
 text = "If the mochi turns dark, dip your hand in the water,
 then splash it on the mochi."
+
+[node name="Score Manager" parent="." instance=ExtResource("12_df6i4")]
+
+[connection signal="first_hit" from="World/WoodBowl" to="Score Manager" method="begin_time"]
+[connection signal="win" from="World/WoodBowl" to="Score Manager" method="stop_time"]
