@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://1f45ej0126d4"]
+
+[ext_resource type="Texture2D" uid="uid://cr5uf8esydg5j" path="res://vfx/alphablob.png" id="1_2ackv"]
+
+[sub_resource type="Curve" id="Curve_jgfux"]
+max_value = 100.0
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 100), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[node name="WaterSplash" type="Node2D"]
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 16
+lifetime = 0.5
+one_shot = true
+explosiveness = 0.8
+texture = ExtResource("1_2ackv")
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 10.0
+initial_velocity_max = 50.0
+damping_min = 7.432
+damping_max = 7.432
+damping_curve = SubResource("Curve_jgfux")
