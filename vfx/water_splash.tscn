@@ -1,11 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://1f45ej0126d4"]
+[gd_scene load_steps=4 format=3 uid="uid://1f45ej0126d4"]
 
 [ext_resource type="Texture2D" uid="uid://cr5uf8esydg5j" path="res://vfx/alphablob.png" id="1_2ackv"]
 
 [sub_resource type="Curve" id="Curve_jgfux"]
 max_value = 100.0
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 100), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 44.0133), 0.0, 0.0, 0, 0]
 point_count = 2
+
+[sub_resource type="Curve" id="Curve_ibaa6"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.728302, 0.698533), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
 
 [node name="WaterSplash" type="Node2D"]
 
@@ -18,8 +22,11 @@ explosiveness = 0.8
 texture = ExtResource("1_2ackv")
 spread = 180.0
 gravity = Vector2(0, 0)
-initial_velocity_min = 10.0
-initial_velocity_max = 50.0
+initial_velocity_min = 80.0
+initial_velocity_max = 160.0
 damping_min = 7.432
 damping_max = 7.432
 damping_curve = SubResource("Curve_jgfux")
+scale_amount_max = 2.0
+scale_amount_curve = SubResource("Curve_ibaa6")
+color = Color(0.54, 0.869667, 1, 1)
