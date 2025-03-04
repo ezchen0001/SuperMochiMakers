@@ -87,10 +87,12 @@ func _process(_delta: float) -> void:
 		make_dry()
 		get_parent().get_node("WoodBowl").make_wet()
 		pass
+
 func make_wet():
 	if wet:
 		return
 	wet = true
+	add_child(VFX.create_splash($Center.global_position))
 	color = Color.SKY_BLUE
 	$Splash.play()
 	
@@ -98,5 +100,6 @@ func make_dry():
 	if not wet:
 		return
 	wet = false
+	add_child(VFX.create_splash($Center.global_position))
 	color = Color.WHITE
 	$Splash.play()
