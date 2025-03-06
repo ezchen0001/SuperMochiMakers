@@ -62,12 +62,24 @@ func _process(_delta: float) -> void:
 		var data = peer.get_packet()
 		var hands_data = _parse_hands_from_packet(data)
 		
+		
+		
 		if hands_data["left"] != null:
 			modulate = color
 			$Center.position = (left_hand.pos_average(hands_data["left"])) 
 			left_hand.reposition_node_landmarks(joints,hands_data["left"])
 			#left_hand.parse_hand_landmarks_from_data(hands_data["left"])
-			
+			var i = 0
+			for v in left_hand.HAND_LINES_MAPPING:
+				var connection = connections[i]
+				connection.points[0] = joints[v[0]].position
+				connection.points[1] = joints[v[1]].position
+				i += 1
+		elif hands_data["right"] != null:
+			modulate = color
+			$Center.position = (left_hand.pos_average(hands_data["right"])) 
+			left_hand.reposition_node_landmarks(joints,hands_data["right"])
+			#left_hand.parse_hand_landmarks_from_data(hands_data["left"])
 			var i = 0
 			for v in left_hand.HAND_LINES_MAPPING:
 				var connection = connections[i]
