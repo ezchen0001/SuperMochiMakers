@@ -1,10 +1,12 @@
 [gd_scene load_steps=18 format=3 uid="uid://dt000e1spiix3"]
 
+
 [ext_resource type="Script" path="res://world_hand.gd" id="1_oap4b"]
 [ext_resource type="Texture2D" uid="uid://ftvfremxkw4l" path="res://hand_joint.png" id="2_a7ii1"]
 [ext_resource type="Texture2D" uid="uid://bfx7fyv3ddssd" path="res://water_bowl.png" id="3_j4xk0"]
 [ext_resource type="Texture2D" uid="uid://vptw45mpcs71" path="res://background.jpg" id="4_xo5rq"]
 [ext_resource type="Texture2D" uid="uid://cvuibdsts4u8n" path="res://wood_bowl.png" id="5_n4bbi"]
+[ext_resource type="Texture2D" uid="uid://b1vaeiq8sxs77" path="res://rice.png" id="6_r5h7p"]
 [ext_resource type="AudioStream" uid="uid://c2r3htn3gvo8e" path="res://punch.wav" id="6_sf83y"]
 [ext_resource type="Script" path="res://wood_bowl.gd" id="6_ysb61"]
 [ext_resource type="AudioStream" uid="uid://g1wr6jvcoj2c" path="res://whack.wav" id="7_1fvxe"]
@@ -13,22 +15,10 @@
 [ext_resource type="AudioStream" uid="uid://cxh4kmlh3o8x" path="res://splash.wav" id="9_n43dg"]
 [ext_resource type="PackedScene" uid="uid://cqi7neen0jyjt" path="res://Time_Score/score_manager.tscn" id="12_df6i4"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_re0uv"]
-radius = 128.52
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_5g66f"]
-radius = 169.043
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_mnstp"]
-radius = 98.8254
-
 [sub_resource type="Gradient" id="Gradient_edp2h"]
 interpolation_mode = 2
 offsets = PackedFloat32Array(0, 0.231111, 0.853333, 0.977778)
 colors = PackedColorArray(1, 1, 1, 0, 1, 0.572549, 0.537255, 0.67451, 1, 0.600791, 0.575103, 0.486654, 1, 1, 1, 0)
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_ibf1q"]
-radius = 52.2015
 
 [node name="Game" type="Node"]
 
@@ -54,11 +44,6 @@ rotation = -3.14159
 scale = Vector2(1.02784, 1.02784)
 texture = ExtResource("3_j4xk0")
 
-[node name="Area2D" type="Area2D" parent="World/Water/Sprite2D"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="World/Water/Sprite2D/Area2D"]
-shape = SubResource("CircleShape2D_re0uv")
-
 [node name="WoodBowl" type="Node2D" parent="World"]
 position = Vector2(3, 2)
 scale = Vector2(1, 0.974)
@@ -70,24 +55,20 @@ scale = Vector2(3.73478, 3.63677)
 texture = ExtResource("5_n4bbi")
 
 [node name="MochiPoly" type="Polygon2D" parent="World/WoodBowl"]
-z_index = 3
+z_index = 4
 position = Vector2(4, 0)
 scale = Vector2(0.756969, 0.756969)
 texture = ExtResource("7_vstma")
 polygon = PackedVector2Array(11.7185, -646.657, -163.055, -631.153, -340.648, -573.365, -423.806, -497.254, -523.879, -405.639, -597.171, -288.653, -635.226, -153.344, -666.235, 1.69676, -653.549, 142.643, -595.761, 301.913, -533.745, 418.899, -460.453, 493.6, -313.868, 595.082, -126.409, 665.555, 41.3173, 669.784, 216.091, 654.28, 388.046, 578.169, 497.984, 468.23, 595.237, 369.567, 648.797, 210.298, 682.624, 31.2955, 676.986, -113.879, 644.569, -229.456, 578.324, -383.087, 495.165, -477.522, 376.77, -570.546, 213.272, -642.429)
 uv = PackedVector2Array(225.704, 36.5161, 177.276, 40.8121, 128.068, 56.8243, 105.026, 77.9136, 77.2973, 103.299, 56.9891, 135.714, 46.4445, 173.206, 37.8525, 216.166, 41.3674, 255.22, 57.3797, 299.352, 74.5636, 331.767, 94.8718, 352.465, 135.488, 380.584, 187.43, 400.112, 233.905, 401.283, 282.332, 396.987, 329.979, 375.898, 360.441, 345.436, 387.388, 318.098, 402.229, 273.966, 411.602, 224.367, 410.04, 184.141, 401.057, 152.117, 382.702, 109.548, 359.66, 83.3812, 326.854, 57.6054, 281.551, 37.6877)
 
-[node name="Danger" type="Area2D" parent="World/WoodBowl"]
-position = Vector2(7.49709, 2.19975)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="World/WoodBowl/Danger"]
-shape = SubResource("CircleShape2D_5g66f")
-
-[node name="MochiWet" type="Area2D" parent="World/WoodBowl"]
-position = Vector2(7.49709, 2.19975)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="World/WoodBowl/MochiWet"]
-shape = SubResource("CircleShape2D_mnstp")
+[node name="RicePoly" type="Polygon2D" parent="World/WoodBowl"]
+z_index = 3
+position = Vector2(4, 0)
+scale = Vector2(0.756969, 0.756969)
+texture = ExtResource("6_r5h7p")
+polygon = PackedVector2Array(11.7185, -646.657, -163.055, -631.153, -340.648, -573.365, -423.806, -497.254, -523.879, -405.639, -597.171, -288.653, -635.226, -153.344, -666.235, 1.69676, -653.549, 142.643, -595.761, 301.913, -533.745, 418.899, -460.453, 493.6, -313.868, 595.082, -126.409, 665.555, 41.3173, 669.784, 216.091, 654.28, 388.046, 578.169, 497.984, 468.23, 595.237, 369.567, 648.797, 210.298, 682.624, 31.2955, 676.986, -113.879, 644.569, -229.456, 578.324, -383.087, 495.165, -477.522, 376.77, -570.546, 213.272, -642.429)
+uv = PackedVector2Array(225.704, 36.5161, 177.276, 40.8121, 128.068, 56.8243, 105.026, 77.9136, 77.2973, 103.299, 56.9891, 135.714, 46.4445, 173.206, 37.8525, 216.166, 41.3674, 255.22, 57.3797, 299.352, 74.5636, 331.767, 94.8718, 352.465, 135.488, 380.584, 187.43, 400.112, 233.905, 401.283, 282.332, 396.987, 329.979, 375.898, 360.441, 345.436, 387.388, 318.098, 402.229, 273.966, 411.602, 224.367, 410.04, 184.141, 401.057, 152.117, 382.702, 109.548, 359.66, 83.3812, 326.854, 57.6054, 281.551, 37.6877)
 
 [node name="Impact" type="Line2D" parent="World/WoodBowl"]
 modulate = Color(1, 1, 1, 0)
@@ -128,11 +109,6 @@ script = ExtResource("1_oap4b")
 
 [node name="Center" type="Sprite2D" parent="World/Hand"]
 texture = ExtResource("2_a7ii1")
-
-[node name="Area2D" type="Area2D" parent="World/Hand/Center"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="World/Hand/Center/Area2D"]
-shape = SubResource("CircleShape2D_ibf1q")
 
 [node name="Connection" type="Line2D" parent="World/Hand"]
 points = PackedVector2Array(0, 0, 0, 0)

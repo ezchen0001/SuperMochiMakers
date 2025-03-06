@@ -62,12 +62,24 @@ func _process(_delta: float) -> void:
 		var data = peer.get_packet()
 		var hands_data = _parse_hands_from_packet(data)
 		
+		
+		
 		if hands_data["left"] != null:
 			modulate = color
 			$Center.position = (left_hand.pos_average(hands_data["left"])) 
 			left_hand.reposition_node_landmarks(joints,hands_data["left"])
 			#left_hand.parse_hand_landmarks_from_data(hands_data["left"])
-			
+			var i = 0
+			for v in left_hand.HAND_LINES_MAPPING:
+				var connection = connections[i]
+				connection.points[0] = joints[v[0]].position
+				connection.points[1] = joints[v[1]].position
+				i += 1
+		elif hands_data["right"] != null:
+			modulate = color
+			$Center.position = (left_hand.pos_average(hands_data["right"])) 
+			left_hand.reposition_node_landmarks(joints,hands_data["right"])
+			#left_hand.parse_hand_landmarks_from_data(hands_data["left"])
 			var i = 0
 			for v in left_hand.HAND_LINES_MAPPING:
 				var connection = connections[i]
@@ -87,10 +99,12 @@ func _process(_delta: float) -> void:
 		make_dry()
 		get_parent().get_node("WoodBowl").make_wet()
 		pass
+
 func make_wet():
 	if wet:
 		return
 	wet = true
+	add_child(VFX.create_splash($Center.global_position))
 	color = Color.SKY_BLUE
 	$Splash.play()
 	
@@ -98,5 +112,6 @@ func make_dry():
 	if not wet:
 		return
 	wet = false
+	add_child(VFX.create_splash($Center.global_position))
 	color = Color.WHITE
 	$Splash.play()
