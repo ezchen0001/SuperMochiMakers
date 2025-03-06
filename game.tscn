@@ -169,4 +169,5 @@ then splash it on the mochi."
 [node name="Score Manager" parent="." instance=ExtResource("12_df6i4")]
 
 [connection signal="first_hit" from="World/WoodBowl" to="Score Manager" method="begin_time"]
+[connection signal="hand_whack" from="World/WoodBowl" to="Score Manager" method="hand_hit_penalty"]
 [connection signal="win" from="World/WoodBowl" to="Score Manager" method="stop_time"]

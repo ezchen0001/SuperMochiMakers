@@ -2,6 +2,7 @@ extends Node2D
 
 signal first_hit
 signal win
+signal hand_whack
 
 @onready var _poly = $MochiPoly
 @onready var _label = $Label
@@ -43,6 +44,7 @@ func pound(x:float):
 		$Punch.play()
 		hurt_tween = create_tween()
 		hurt_tween.tween_property(get_parent().get_node("Hand"), "color", Color.WHITE, 0.5)
+		hand_whack.emit()
 	
 	
 	if wetness < 1:
@@ -59,9 +61,10 @@ func pound(x:float):
 		$Success.play()
 		_label.visible = true
 		win.emit()
-		await get_tree().create_timer(5).timeout
+		await get_tree().create_timer(7).timeout
 		_randomize()
 		_label.visible = false
+		started = false 
 		
 		
 	pass

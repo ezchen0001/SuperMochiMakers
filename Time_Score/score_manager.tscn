@@ -1,20 +1,134 @@
-[gd_scene load_steps=2 format=3 uid="uid://cqi7neen0jyjt"]
+[gd_scene load_steps=3 format=3 uid="uid://cqi7neen0jyjt"]
 
 [ext_resource type="Script" path="res://Time_Score/score_manager.gd" id="1_qatvg"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_osuys"]
+size = Vector2(2357, 1568)
 
 [node name="Score Manager" type="Node"]
 script = ExtResource("1_qatvg")
 
 [node name="1 Sec Timer" type="Timer" parent="."]
-wait_time = 0.5
 
-[node name="Time Label" type="Label" parent="."]
+[node name="Game Time Label" type="Label" parent="."]
 z_index = 4
-offset_left = -956.0
-offset_top = -665.0
-offset_right = -80.0
-offset_bottom = -63.0
-theme_override_font_sizes/font_size = 441
+offset_left = -1133.0
+offset_top = 337.0
+offset_right = -257.0
+offset_bottom = 939.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 30
+theme_override_font_sizes/font_size = 181
 text = "0:00"
+
+[node name="Penalty Label" type="Label" parent="."]
+modulate = Color(1, 1, 1, 0)
+z_index = 4
+offset_left = -978.0
+offset_top = 168.0
+offset_right = -102.0
+offset_bottom = 770.0
+theme_override_colors/font_color = Color(0.9, 0.279, 0.279, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 30
+theme_override_font_sizes/font_size = 181
+text = "+2"
+
+[node name="Penalty Label2" type="Label" parent="."]
+modulate = Color(1, 1, 1, 0)
+z_index = 4
+offset_left = 992.0
+offset_top = -148.0
+offset_right = 1868.0
+offset_bottom = 454.0
+rotation = 3.14159
+theme_override_colors/font_color = Color(0.9, 0.279, 0.279, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 30
+theme_override_font_sizes/font_size = 181
+text = "+2"
+
+[node name="Game Time Label2" type="Label" parent="."]
+z_index = 4
+offset_left = 1144.0
+offset_top = -320.0
+offset_right = 2020.0
+offset_bottom = 282.0
+rotation = -3.14159
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 30
+theme_override_font_sizes/font_size = 181
+text = "0:00"
+
+[node name="Temp Screen Border" type="Sprite2D" parent="."]
+visible = false
+texture = SubResource("PlaceholderTexture2D_osuys")
+
+[node name="Label" type="Label" parent="."]
+visible = false
+z_index = 20
+offset_left = -553.0
+offset_top = -219.0
+offset_right = -216.0
+offset_bottom = -109.0
+scale = Vector2(3.25634, 3.25634)
+theme_override_colors/font_color = Color(0.988333, 1, 0.65, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 32
+theme_override_font_sizes/font_size = 80
+text = "SUCCESS"
+
+[node name="End Score" type="Label" parent="."]
+z_index = 4
+offset_left = -605.0
+offset_top = 88.0
+offset_right = 617.0
+offset_bottom = 309.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 35
+theme_override_font_sizes/font_size = 161
+text = "Total Time: 0:00"
+
+[node name="End Score2" type="Label" parent="."]
+z_index = 4
+offset_left = 617.0
+offset_top = -173.0
+offset_right = 1839.0
+offset_bottom = 48.0
+rotation = -3.14159
+size_flags_horizontal = 0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 35
+theme_override_font_sizes/font_size = 161
+text = "Total Time: 0:00"
+
+[node name="Grade Label" type="Label" parent="."]
+z_index = 4
+offset_left = -733.0
+offset_top = 309.0
+offset_right = 738.0
+offset_bottom = 765.0
+theme_override_colors/font_color = Color(1, 0.925333, 0.44, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 35
+theme_override_font_sizes/font_size = 146
+text = "Funi Message"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Grade Label2" type="Label" parent="."]
+z_index = 4
+offset_left = 738.0
+offset_top = -369.0
+offset_right = 2209.0
+offset_bottom = 87.0
+rotation = -3.14159
+theme_override_colors/font_color = Color(1, 0.925333, 0.44, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 35
+theme_override_font_sizes/font_size = 146
+text = "Funi Message"
+horizontal_alignment = 1
+autowrap_mode = 2
 
 [connection signal="timeout" from="1 Sec Timer" to="." method="_on__sec_timer_timeout"]
